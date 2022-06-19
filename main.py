@@ -15,13 +15,15 @@ def main():
     print(title)
     driver.implicitly_wait(0.5)
 
+    #구글 검색어로 selenium입력해서 서치 클릭
     search_box = driver.find_element(by=By.NAME, value="q")
     search_button = driver.find_element(by=By.NAME, value="btnK")
-
     search_box.send_keys("Selenium")
     search_button.click()
 
+    search_box = driver.find_element(by=By.NAME, value="q")
     value = search_box.get_attribute("value")
+    assert value == "Selenium"
     print(value)
 
     driver.quit()
