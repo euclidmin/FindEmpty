@@ -5,13 +5,29 @@
 
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
 
 def main():
     service = Service(executable_path="C:\dev\chromedriver_win32\chromedriver.exe")
     driver = webdriver.Chrome(service=service)
     driver.get("https://www.google.com")
     title = driver.title
+    print(title)
     driver.implicitly_wait(0.5)
+
+    search_box = driver.find_element(by=By.NAME, value="q")
+    search_button = driver.find_element(by=By.NAME, value="btnK")
+
+    search_box.send_keys("Selenium")
+    search_button.click()
+
+    value = search_box.get_attribute("value")
+    print(value)
+
+    driver.quit()
+
+
+
 
 
 
