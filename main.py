@@ -6,6 +6,7 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
+import time
 
 def main():
     service = Service(executable_path="C:\dev\chromedriver_win32\chromedriver.exe")
@@ -25,6 +26,47 @@ def main():
     value = search_box.get_attribute("value")
     assert value == "Selenium"
     print(value)
+
+    c_url = driver.current_url
+    print(c_url)
+    driver.get("https://www.selenium.dev/documentation/webdriver/browser/alerts/")
+    # time.sleep(1)
+    # driver.get("http://www.naver.com")
+    # time.sleep(1)
+    # driver.back()
+    # time.sleep(1)
+    # driver.forward()
+    # time.sleep(1)
+    # driver.refresh()
+    # time.sleep(1)
+    # driver.find_element(By.LINK_TEXT, "See an example alert").click()
+    # alert = wait.until()
+
+    # driver.get("https://smartstore.naver.com/bigyellowtail/products/6245277566")
+    # e = driver.find_element(By.CLASS_NAME, "bd_3psJk")
+    # e.click()
+    # t = e.text
+    # print(t)
+
+    # 옵션 첫번째 클래스 이름은 bd_3psJk
+    # 모든 상품이 은 클래스 이름을 사용한다.
+    driver.get("https://smartstore.naver.com/bigyellowtail/products/4837709503")
+    e = driver.find_element(By.CLASS_NAME, "bd_3psJk")
+    e.click()
+    t = e.text
+    print(t)
+
+    e = driver.find_element(By.CLASS_NAME, "bd_3psJk")
+    e.click()
+    t = e.text
+    print(t)
+
+
+
+
+    time.sleep(3)
+    # while True:
+    #     pass
 
     driver.quit()
 
