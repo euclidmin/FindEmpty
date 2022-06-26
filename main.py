@@ -17,49 +17,45 @@ def main():
     driver.implicitly_wait(0.5)
 
     #구글 검색어로 selenium입력해서 서치 클릭
-    search_box = driver.find_element(by=By.NAME, value="q")
-    search_button = driver.find_element(by=By.NAME, value="btnK")
-    search_box.send_keys("Selenium")
-    search_button.click()
+    # search_box = driver.find_element(by=By.NAME, value="q")
+    # search_button = driver.find_element(by=By.NAME, value="btnK")
+    # search_box.send_keys("Selenium")
+    # search_button.click()
+    #
+    # search_box = driver.find_element(by=By.NAME, value="q")
+    # value = search_box.get_attribute("value")
+    # assert value == "Selenium"
+    # print(value)
 
-    search_box = driver.find_element(by=By.NAME, value="q")
-    value = search_box.get_attribute("value")
-    assert value == "Selenium"
-    print(value)
-
-    c_url = driver.current_url
-    print(c_url)
-    driver.get("https://www.selenium.dev/documentation/webdriver/browser/alerts/")
-    # time.sleep(1)
-    # driver.get("http://www.naver.com")
-    # time.sleep(1)
-    # driver.back()
-    # time.sleep(1)
-    # driver.forward()
-    # time.sleep(1)
-    # driver.refresh()
-    # time.sleep(1)
-    # driver.find_element(By.LINK_TEXT, "See an example alert").click()
-    # alert = wait.until()
-
-    # driver.get("https://smartstore.naver.com/bigyellowtail/products/6245277566")
-    # e = driver.find_element(By.CLASS_NAME, "bd_3psJk")
-    # e.click()
-    # t = e.text
-    # print(t)
 
     # 옵션 첫번째 클래스 이름은 bd_3psJk
     # 모든 상품이 은 클래스 이름을 사용한다.
     driver.get("https://smartstore.naver.com/bigyellowtail/products/4837709503")
-    e = driver.find_element(By.CLASS_NAME, "bd_3psJk")
-    e.click()
-    t = e.text
-    print(t)
+    # driver.get("https://smartstore.naver.com/bigyellowtail/products/6671966658")
 
-    e = driver.find_element(By.CLASS_NAME, "bd_3psJk")
-    e.click()
-    t = e.text
-    print(t)
+    elements = driver.find_elements(By.CLASS_NAME, 'bd_3psJk')
+    L1_element = elements[0]
+    L1_element.click()
+    L1_option_text = L1_element.text
+    print(L1_option_text)
+
+    L1_option_elements = driver.find_elements(By.CLASS_NAME, 'bd_1y1pd')
+    L1_option1 = L1_option_elements[0]
+    L1_option1.click()
+    L1_option_text = L1_element.text
+    print(L1_option_text)
+
+    L2_element = elements[1]
+    L2_element.click()
+    L2_option_text = L2_element.text
+    print(L2_option_text)
+
+    search = '(품절)'
+    option_list = L2_option_text.split(sep='\n')
+    for option in option_list:
+        if search in option:
+            print(option)
+
 
 
 
